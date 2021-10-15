@@ -1,0 +1,83 @@
+{
+  "job": {
+    "content": [
+      {
+        "reader": {
+          "parameter": {
+            "password": "$sqlserver_rzrq_run1_password",
+            "column": [
+              "serverid",
+              "applysno",
+              "otherkinds",
+              "'$ppn_tmstamp'",
+              "'i_ld_ods_t53_applylist_1'",
+              "'0'",
+              "'$modify_datetime'",
+              "'$busi_date'"
+            ],
+            "where": "",
+            "connection": [
+              {
+                "jdbcUrl": [
+                  "$sqlserver_rzrq_run1_jdbcurl"
+                ],
+                "table": [
+                  "run.dbo.applylist"
+                ]
+              }
+            ],
+            "username": "$sqlserver_rzrq_run1_username"
+          },
+          "name": "sqlserverreader"
+        },
+        "writer": {
+          "parameter": {
+            "hadoopConfigFilePath": "$hadoop_config_file_path",
+            "path": "$tmp_hdfs_path_pre/odsuser_datax_tmp.t_ods_t53_applylist_tmp_1",
+            "fileName": "customer_",
+            "haveKerberos": "$have_kerberos",
+            "kerberosKeytabFilePath": "$kerberos_keytab_file_path",
+            "compress": "none",
+            "column": [
+              {
+                "name": "serverid",
+                "type": "decimal"
+              },
+              {
+                "name": "ppn_tmstamp",
+                "type": "timestamp"
+              },
+              {
+                "name": "etl_fl_nm",
+                "type": "string"
+              },
+              {
+                "name": "operation_type",
+                "type": "string"
+              },
+              {
+                "name": "modify_datetime",
+                "type": "timestamp"
+              },
+              {
+                "name": "busi_date",
+                "type": "string"
+              }
+            ],
+            "defaultFS": "$hdfs_name_node_url",
+            "writeMode": "overwrite",
+            "fieldDelimiter": "\t",
+            "fileType": "orc",
+            "kerberosPrincipal": "$kerberos_principal"
+          },
+          "name": "hdfswriter"
+        }
+      }
+    ],
+    "setting": {
+      "speed": {
+        "channel": "1"
+      }
+    }
+  }
+}
